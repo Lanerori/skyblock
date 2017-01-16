@@ -1,0 +1,6 @@
+name: SkyBlock
+author: Lanerori
+website: http://github.com/Lanerori
+main: SkyBlock\Main
+version: "0.1"
+api: [2.0.0]
