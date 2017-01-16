@@ -48,7 +48,7 @@ class SkyBlockCommand extends Command {
      */
     public function __construct(Main $plugin) {
         $this->plugin = $plugin;
-        parent::__construct("skyblock", "Main SkyBlock command", "Usage: /skyblock", ["sb"]);
+        parent::__construct("skyblock", "Main SkyBlock command", "Usage: /섬", ["명령어"]);
     }
 
     public function sendMessage(Player $sender, $message) {
@@ -59,7 +59,7 @@ class SkyBlockCommand extends Command {
         if($sender instanceof Player) {
             if(isset($args[0])) {
                 switch($args[0]) {
-                    case "join":
+                    case "이동":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -76,7 +76,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "create":
+                    case "생성":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $reset = $this->plugin->getResetHandler()->getResetTimer($sender);
@@ -105,7 +105,7 @@ class SkyBlockCommand extends Command {
                             $this->sendMessage($sender, "You already got a skyblock island!");
                         }
                         break;
-                    case "home":
+                    case "집":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -127,7 +127,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "sethome":
+                    case "집설정":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -153,8 +153,8 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "kick":
-                    case "expel":
+                    case "추방":
+                    case "추방":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -191,7 +191,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "lock":
+                    case "접근금지":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -213,7 +213,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "invite":
+                    case "초대":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You haven't a island!");
@@ -252,7 +252,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "accept":
+                    case "수락":
                         if(isset($args[1])) {
                             $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                             if(empty($config->get("island"))) {
@@ -283,8 +283,8 @@ class SkyBlockCommand extends Command {
                             $this->sendMessage($sender, "Usage: /skyblock accept <sender name>");
                         }
                         break;
-                    case "deny":
-                    case "reject":
+                    case "거절":
+                    case "거절":
                         if(isset($args[1])) {
                             $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                             if(empty($config->get("island"))) {
@@ -315,7 +315,7 @@ class SkyBlockCommand extends Command {
                             $this->sendMessage($sender, "Usage: /skyblock accept <sender name>");
                         }
                         break;
-                    case "disband":
+                    case "해체":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You must be in a island to disband it!");
@@ -342,7 +342,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "makeleader":
+                    case "방장만들기":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You must be in a island to set a new leader!");
@@ -383,7 +383,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "leave":
+                    case "떠나다":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You must be in a island to leave it!");
@@ -407,7 +407,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "remove":
+                    case "삭제":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You must be in a island to leave it!");
@@ -462,7 +462,7 @@ class SkyBlockCommand extends Command {
                             $this->sendMessage($sender, "Usage: /skyblock tp <owner name>");
                         }
                         break;
-                    case "reset":
+                    case "초기화":
                         $config = $this->plugin->getSkyBlockManager()->getPlayerConfig($sender);
                         if(empty($config->get("island"))) {
                             $this->sendMessage($sender, "You must be in a island to reset it!");
@@ -498,7 +498,7 @@ class SkyBlockCommand extends Command {
                             }
                         }
                         break;
-                    case "info":
+                    case "명령어":
                         $commands = [
                             "info" => "Shows skyblock command info",
                             "create" => "Create a new island",
@@ -519,7 +519,7 @@ class SkyBlockCommand extends Command {
                             $sender->sendMessage(TextFormat::RED . "/skyblock {$command}: " . TextFormat::YELLOW . $description);
                         }
                         break;
-                    case "teamchat":
+                    case "섬채팅":
                         if($this->plugin->getChatHandler()->isInChat($sender)) {
                             $this->plugin->getChatHandler()->removePlayerFromChat($sender);
                             $this->sendMessage($sender, "You successfully left your team chat!");
@@ -542,12 +542,12 @@ class SkyBlockCommand extends Command {
                         }
                         break;
                     default:
-                        $this->sendMessage($sender, "Use /skyblock info if you don't know how to use the command!");
+                        $this->sendMessage($sender, "Use /섬 명령어 if you don't know how to use the command!");
                         break;
                 }
             }
             else {
-                $this->sendMessage($sender, "Use /skyblock info if you don't know how to use the command!");
+                $this->sendMessage($sender, "Use /섬 명령어 if you don't know how to use the command!");
             }
         }
         else {
